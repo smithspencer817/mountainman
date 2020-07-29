@@ -26,10 +26,21 @@ h1 {
     letter-spacing: 1px;
 }
 
-form {
+#new-post-form {
     margin: 30px auto;
     width: 30%;
 }
+
+#new-hiker-form {
+    margin: 30px auto;
+    width: 30%;
+}
+
+#new-mountain-form {
+    margin: 30px auto;
+    width: 30%;
+}
+
 
 .card-buttons-container {
     position: absolute;
