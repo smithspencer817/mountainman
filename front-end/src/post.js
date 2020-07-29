@@ -113,7 +113,10 @@ function addTrailMixButton(post) {
         const trailMix = document.getElementById(`trailmix-count-label-${post.id}`)
         likeCount.innerText = newLikeCount
 
-        trailMix.style.cssText = "animation: shake 1s; animation-iteration-count: 1;"
+        trailMix.style.animation = "shake 1s"
+        setTimeout( () => {
+            trailMix.style.animation = "";
+        }, 1000)
 
         fetch(`http://localhost:3000/posts/${post.id}`, {
             method: "PATCH",
