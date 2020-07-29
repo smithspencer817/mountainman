@@ -75,7 +75,7 @@ function renderPost(post) {
             <p class="card-text" style="font-size: 12px; letter-spacing: 1px;">${post.content}</p>
             <br><br><br><br>
             <div class="card-buttons-container">
-                <p>Trailmix: <span id="trailmix-count-${post.id}">${post.likes}</span></p>
+                <p id="trailmix-count-label-${post.id}">Trailmix: <span id="trailmix-count-${post.id}">${post.likes}</span></p>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <button type="button" id="trailmix-button-${post.id}" class="btn btn-primary">Trailmix</button>
                     <button type="button" class="btn btn-success">Bucket</button>
@@ -107,7 +107,10 @@ function addTrailMixButton(post) {
     trailmixButton.addEventListener("click", (e) => {
         const likeCount = document.getElementById(`trailmix-count-${post.id}`)
         const newLikeCount = (parseInt(likeCount.innerText) + 1).toString();
+        const trailMix = document.getElementById(`trailmix-count-label-${post.id}`)
         likeCount.innerText = newLikeCount
+
+        trailMix.style.cssText = "animation: shake 1s; animation-iteration-count: 1;"
 
         fetch(`http://localhost:3000/posts/${post.id}`, {
             method: "PATCH",

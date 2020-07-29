@@ -37,3 +37,16 @@ form {
     left: 30px;
 }
 
+@keyframes shake {
+    0% { transform: translate(0px, 0px) rotate(0deg); font-size: 1.1rem; color: rgb(0, 0, 0)}
+    10% { transform: translate(0px, 0px) rotate(2deg); font-size: 1.3rem; color: rgb(6, 77, 0)}
+    20% { transform: translate(0px, 0px) rotate(-4deg); font-size: 1.6rem; color: rgb(0, 139, 7)}
+    30% { transform: translate(0px, 0px) rotate(6deg); font-size: 2rem; color: rgb(17, 200, 0)}
+    40% { transform: translate(0px, 0px) rotate(-8deg); font-size: 2rem; color: rgb(17, 200, 0)}
+    50% { transform: translate(0px, 0px) rotate(6deg); font-size: 1.6rem; color: rgb(17, 200, 0)}
+    60% { transform: translate(0px, 0px) rotate(-4deg); font-size: 1.3rem; color: rgb(0, 139, 7)}
+    70% { transform: translate(0px, 0px) rotate(2deg); font-size: 1.1rem; color: rgb(6, 77, 0)}
+    80% { transform: translate(0px, 0px) rotate(0deg); font-size: 1rem; color: rgb(0, 0, 0)}
+}
+
+
