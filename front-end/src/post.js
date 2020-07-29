@@ -128,7 +128,7 @@ function addTrailMixButton(post) {
     });
 }
 
-function editPostForm(post, postCard) {
+function editPostForm(post) {
     const editButton = document.getElementById(`edit-button-${post.id}`)
     
     editButton.addEventListener("click", (e) => {
@@ -155,6 +155,13 @@ function editPostForm(post, postCard) {
         editPostForm.addEventListener("submit", (e) => {
             e.preventDefault();
             addEditChanges(e, post);
+            const confirmation = document.createElement("span")
+            confirmation.className = "badge badge-success"
+            confirmation.style.cssText = "float: right; margin-right: 20px;"
+
+            confirmation.innerText = "changes updated"
+
+            editPostForm.append(confirmation)
         })
     });
 
@@ -164,6 +171,7 @@ function addEditChanges(event, post) {
     const postCard = document.getElementById(`post-card-${post.id}`)
     postCard.childNodes[1].src = event.target[1].value
     postCard.childNodes[3].childNodes[5].innerText = event.target[0].value
+    const modal = document.getElementById("modal-edit-button")
 
     const data = {
         content: event.target[0].value,
