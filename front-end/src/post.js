@@ -2,27 +2,33 @@ const postsURL = "http://localhost:3000/posts"
 
 document.addEventListener("DOMContentLoaded", (e) => {
     
+    handleOtherForms();
     loadPosts();
     submitForm();
     editPostForm();
 
+});
+
+function handleOtherForms() {
     const newPostButton = document.getElementById("new-post-button");
 
     newPostButton.addEventListener("click", () => {
+        console.log("test")
         const newHikerForm = document.getElementById("new-hiker-form");
         const newMountainForm = document.getElementById("new-mountain-form");
 
         if (newHikerForm.classList.contains("show")) {
-            newHikerForm.classList.remove("show")
+            console.log("1")
+            newHikerForm.classList.remove("show");
         }
 
         if (newMountainForm.classList.contains("show")) {
+            console.log("2")
             newMountainForm.classList.remove("show");
         }
 
     });
-
-});
+}
 
 function submitForm() {
     const newPostForm = document.getElementById("new-post-form")
@@ -159,10 +165,10 @@ function editPostForm(post) {
             e.preventDefault();
             addEditChanges(e, post);
             const confirmation = document.createElement("span")
-            confirmation.className = "badge badge-success"
-            confirmation.style.cssText = "float: right; margin-right: 20px;"
+            confirmation.className = "alert alert-success"
+            confirmation.style.cssText = "float: right; margin-right: 20px; width: 425px; text-align: center;"
 
-            confirmation.innerText = "changes updated"
+            confirmation.innerText = "Your changes have been updated!"
 
             editPostForm.append(confirmation)
         })
@@ -174,7 +180,6 @@ function addEditChanges(event, post) {
     const postCard = document.getElementById(`post-card-${post.id}`)
     postCard.childNodes[1].src = event.target[1].value
     postCard.childNodes[3].childNodes[5].innerText = event.target[0].value
-    const modal = document.getElementById("modal-edit-button")
 
     const data = {
         content: event.target[0].value,
@@ -189,5 +194,4 @@ function addEditChanges(event, post) {
         },
         body: JSON.stringify(data)
     })
-    .then(loadPosts)
 }

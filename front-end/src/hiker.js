@@ -2,6 +2,7 @@ const hikersURL = "http://localhost:3000/hikers"
 
 document.addEventListener("DOMContentLoaded", (e) => {
 
+   
     handleNewPostHikers();
     newHikerForm();
 
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         const newPostForm = document.getElementById("new-post-form");
 
         if (newMountainForm.classList.contains("show")) {
-            newMountainForm.classList.remove("show")
+            newMountainForm.classList.remove("show");
         }
 
         if (newPostForm.classList.contains("show")) {

@@ -98,7 +98,7 @@
           <label for="new-post-image-input">Image URL</label>
           <input type="text" class="form-control" id="new-post-image-input">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" data-toggle="popover" title="New Post Submitted!" data-placement="right" data-trigger="focus" data-content="Scroll down to the bottom of the page to see your new post">Submit</button>
     </form>
     
     <!-- New Hiker -->
@@ -123,7 +123,7 @@
             <option value="5">5</option> 
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <!-- <button type="submit" class="btn btn-primary" data-toggle="popover" title="New Hiker Added!" data-placement="right" data-trigger="focus" data-content="You can now select this hiker when creating a new post">Submit</button> -->
     </form>
 
     <!-- New Mountain -->
@@ -152,7 +152,7 @@
             <option value="5">5</option> 
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <!-- <button type="submit" class="btn btn-primary" data-toggle="popover" title="New Mountain Added!" data-placement="right" data-trigger="focus" data-content="You can now select this mountain when creating a new post">Submit</button> -->
     </form>
 
     <!-- EDIT FORM MODAL -->
@@ -168,32 +168,6 @@
           </div>
           <div class="modal-body" id="modal-body">
 
-            <!-- begin form -->
-
-            <!-- end form -->
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- POST CONFIMATION MODAL -->
-
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Congratulations your post has been posted!
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -213,5 +187,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+      $('.popover-dismiss').popover({
+        trigger: 'focus'
+      })
+    </script>
   </body>
 </html>

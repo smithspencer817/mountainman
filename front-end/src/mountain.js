@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         const newPostForm = document.getElementById("new-post-form");
 
         if (newHikerForm.classList.contains("show")) {
-            newHikerForm.classList.remove("show")
+            newHikerForm.classList.remove("show");
         }
 
         if (newPostForm.classList.contains("show")) {
