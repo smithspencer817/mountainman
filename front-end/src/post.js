@@ -2,10 +2,9 @@ const postsURL = "http://localhost:3000/posts"
 
 document.addEventListener("DOMContentLoaded", (e) => {
     
-    handleOtherForms();
     loadPosts();
+    handleOtherForms();
     submitForm();
-    editPostForm();
 
 });
 
@@ -13,17 +12,14 @@ function handleOtherForms() {
     const newPostButton = document.getElementById("new-post-button");
 
     newPostButton.addEventListener("click", () => {
-        console.log("test")
         const newHikerForm = document.getElementById("new-hiker-form");
         const newMountainForm = document.getElementById("new-mountain-form");
 
         if (newHikerForm.classList.contains("show")) {
-            console.log("1")
             newHikerForm.classList.remove("show");
         }
 
         if (newMountainForm.classList.contains("show")) {
-            console.log("2")
             newMountainForm.classList.remove("show");
         }
 
@@ -56,10 +52,19 @@ function addNewPost(event) {
         },
         body: JSON.stringify(data)
     })
-    .then(loadPosts)
+    .then(res => res.json())
+    .then(json => {
+        renderPost(json)
+        console.log(json)
+    })
+    
 }
 
+
 function loadPosts() {
+    const postContainer = document.getElementById("post-container")
+    postContainer.innerHTML = ""
+
     fetch(postsURL)
     .then(res => res.json())
     .then(posts => posts.forEach(post => {
@@ -86,7 +91,7 @@ function renderPost(post) {
                 <p id="trailmix-count-label-${post.id}">Trailmix: <span id="trailmix-count-${post.id}">${post.likes}</span></p>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <button type="button" id="trailmix-button-${post.id}" class="btn btn-primary">Trailmix</button>
-                    <button type="button" class="btn btn-success">Bucket</button>
+                    <button type="button" class="btn btn-success" id="bucket-button-${post.id}">Bucket</button>
                     <button type="button" id="edit-button-${post.id}" class="btn btn-secondary" data-toggle="modal" data-target="#modal-edit-button">Edit</button>
                     <button type="button" id="delete-button-${post.id}" class="btn btn-dark">Delete</button>
                 </div>
@@ -98,8 +103,39 @@ function renderPost(post) {
 
     addTrailMixButton(post)
     addDeleteButton(post, postCard)
-    editPostForm(post, postCard)
+    addBucketListButton(post)
+    editPostForm(post)
 };
+
+function addBucketListButton(post) {
+    const bucketListButton = document.getElementById(`bucket-button-${post.id}`)
+    const bucketListCardsContainer = document.getElementById("bucket-list-cards-container")
+    
+    const newBucketItem = document.createElement("div")
+    newBucketItem.className = "card"
+    newBucketItem.style.cssText = "width: 18rem; display: inline-block; margin-bottom: 50px;"
+    newBucketItem.innerHTML = `
+        <img src="${post.image}" class="card-img-top" alt="${post.mountain.name}">
+        <div class="card-body">
+            <h5 class="card-title">${post.mountain.name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted"> By: ${post.hiker.name}</h6>
+            <p class="card-text" style="font-size: 12px; letter-spacing: 1px;">${post.content}</p>
+            <button type="button" id="remove-button-${post.id}" class="btn btn-danger">Remove</button>
+        </div>
+    `
+
+    bucketListButton.addEventListener("click", (e) => {
+        const bucketListCounter = document.getElementById("bucket-list-counter")
+        bucketListCounter.innerText = (parseInt(bucketListCounter.innerText) + 1).toString();
+        bucketListCardsContainer.appendChild(newBucketItem)
+
+        const removeButton = document.getElementById(`remove-button-${post.id}`)
+        removeButton.addEventListener("click", (e) => {
+            newBucketItem.remove();
+            bucketListCounter.innerText = (parseInt(bucketListCounter.innerText) - 1).toString();
+        })
+    })
+}
 
 function addDeleteButton(post, postCard) {
     const deleteButton = document.getElementById(`delete-button-${post.id}`)
@@ -160,8 +196,8 @@ function editPostForm(post) {
             </form>
         `
 
-        const editPostForm = document.getElementById("edit-post-form")
-        editPostForm.addEventListener("submit", (e) => {
+        const editForm = document.getElementById("edit-post-form")
+        editForm.addEventListener("submit", (e) => {
             e.preventDefault();
             addEditChanges(e, post);
             const confirmation = document.createElement("span")
@@ -170,7 +206,7 @@ function editPostForm(post) {
 
             confirmation.innerText = "Your changes have been updated!"
 
-            editPostForm.append(confirmation)
+            editForm.append(confirmation)
         })
     });
 

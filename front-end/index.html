@@ -71,9 +71,30 @@
         <a class="nav-link btn btn-primary" data-toggle="collapse" href="#new-mountain-form" role="button" aria-expanded="false" aria-controls="new-mountain-form"  style="margin: 10px;" >New Mountain</a>
       </li>
       <li class="nav-item" id="bucket-list-button">
-        <a class="nav-link btn btn-success" href="#" style="margin: 10px;">Bucket List</a>
+        <a class="nav-link btn btn-success" type="button" href="#bucket-list-modal" data-toggle="modal" data-target="#bucket-list-modal" style="margin: 10px;">Bucket List <span class="badge badge-light" id="bucket-list-counter">0</span></a>
         </li>
     </ul>
+
+    <!-- Bucket List Modal -->
+
+    <div class="modal fade" id="bucket-list-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="bucket-list-modal-label" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bucket-list-modal-label">Bucket List</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="bucket-list-cards-container" style="text-align: center; background-color: rgb(219, 219, 219);">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- New Post Form -->
 
@@ -123,7 +144,7 @@
             <option value="5">5</option> 
         </select>
       </div>
-      <!-- <button type="submit" class="btn btn-primary" data-toggle="popover" title="New Hiker Added!" data-placement="right" data-trigger="focus" data-content="You can now select this hiker when creating a new post">Submit</button> -->
+      <button type="submit" class="btn btn-primary" data-toggle="popover" title="New Hiker Added!" data-placement="right" data-trigger="focus" data-content="You can now select this hiker when creating a new post">Submit</button>
     </form>
 
     <!-- New Mountain -->
@@ -152,7 +173,7 @@
             <option value="5">5</option> 
         </select>
       </div>
-      <!-- <button type="submit" class="btn btn-primary" data-toggle="popover" title="New Mountain Added!" data-placement="right" data-trigger="focus" data-content="You can now select this mountain when creating a new post">Submit</button> -->
+      <button type="submit" class="btn btn-primary" data-toggle="popover" title="New Mountain Added!" data-placement="right" data-trigger="focus" data-content="You can now select this mountain when creating a new post">Submit</button>
     </form>
 
     <!-- EDIT FORM MODAL -->
