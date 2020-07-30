@@ -10,16 +10,9 @@ class PostsController < ApplicationController
         render json: @post, only: [:id, :content, :likes], include: [:hiker, :mountain]
     end
 
-    def new
-        @post = Post.new
-    end
-
     def create
         @post = Post.create(post_params)
-    end
-
-    def edit
-        @post = Post.find(params[:id])
+        render json: @post, only: [:id, :content, :likes, :image], include: [:hiker, :mountain]
     end
 
     def update

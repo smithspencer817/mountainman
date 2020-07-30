@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
     loadPosts();
     handleOtherForms();
     submitForm();
-    console.log("test")
 
 });
 
@@ -52,11 +51,20 @@ function addNewPost(event) {
             Accept: 'application/json'
         },
         body: JSON.stringify(data)
-    }).then(loadPosts)
+    })
+    .then(res => res.json())
+    .then(json => {
+        renderPost(json)
+        console.log(json)
+    })
     
 }
 
+
 function loadPosts() {
+    const postContainer = document.getElementById("post-container")
+    postContainer.innerHTML = ""
+
     fetch(postsURL)
     .then(res => res.json())
     .then(posts => posts.forEach(post => {
@@ -65,7 +73,6 @@ function loadPosts() {
 }
 
 function renderPost(post) {
-    console.log("test")
     const postContainer = document.getElementById("post-container")
 
     const postCard = document.createElement("div")
@@ -137,7 +144,6 @@ function addDeleteButton(post, postCard) {
         fetch(`http://localhost:3000/posts/${post.id}`, {
             method: "DELETE"
         })
-        .then(loadPosts)
     })
 }
 
@@ -163,7 +169,6 @@ function addTrailMixButton(post) {
             body: JSON.stringify({
                 likes: newLikeCount
             })
-            .then(loadPosts)
         });
     });
 }
@@ -225,5 +230,4 @@ function addEditChanges(event, post) {
         },
         body: JSON.stringify(data)
     })
-    .then(loadPosts)
 }
